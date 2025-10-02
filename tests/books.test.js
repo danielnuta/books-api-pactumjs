@@ -1,11 +1,16 @@
-const { spec } = require('pactum');
+const { spec, request } = require('pactum');
 const { faker } = require('@faker-js/faker');
+//const { request } = require('');
 
 const baseUrl = 'http://localhost:3000';
 
 describe('Books API Tests', () => {
   let bookId;
   let token;
+
+  before(async () => {
+		request.setDefaultTimeout(10000);
+	});
 
   it('POST /auth/login - should login successfully', async () => {
     const loginRes = await spec()
